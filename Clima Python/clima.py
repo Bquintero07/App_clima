@@ -22,7 +22,7 @@ def city_data(API_key):
             print(f"no fue posible contactar con la API Error: {response.status_code}")
 
 def city_weather(API_key, data):
-    url_api = f"https://api.openweathermap.org/data/2.5/weather?lat={data["latitud"]}&lon={data["longitud"]}&appid={API_key}"
+    url_api = f"https://api.openweathermap.org/data/2.5/weather?lat={data["latitud"]}&lon={data["longitud"]}&appid={API_key}&&lang=es"
     response = requests.get(url_api)
     if response.status_code == 200:
         response_json = response.json()
@@ -35,6 +35,7 @@ def city_weather(API_key, data):
             print(f"| Presion: {response_json["main"]["pressure"]} hPa.                             |")
             print(f"| Humedad: {response_json["main"]["humidity"]}%                                   |")
             print(f"| Velocidad del viento: {response_json["wind"]["speed"]} M/s                 |")
+            print(f"| Descripcion del clima: {response_json["weather"][0]["description"]}                   |")
             print("|________________________________________________|")
 
         else:
